@@ -19,7 +19,7 @@ const gameOptions = {
 
 const start = () => {
     bot.setMyCommands([
-        {command: '/start', description: 'Початкове привітання'},
+        {command: '/start', description: 'Початкове привітання!'},
         {command: '/info', description: 'Отримати інформацію про користувача'},
         {command: '/game', description: 'game'}
     ])
