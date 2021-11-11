@@ -9,7 +9,7 @@ const chats = {}
 const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-await client.connect(err => {
+client.connect(err => {
     const collection = client.db("test").collection("devices");
 
     // perform actions on the collection object
