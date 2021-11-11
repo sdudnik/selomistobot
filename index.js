@@ -55,9 +55,10 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-                return bot.sendMessage(chatID, 'Databases: ')
+            return bot.sendMessage(chatId,'Тебе звати/ ' + msg.from.first_name)
+            //    return bot.sendMessage(chatId, 'Databases: ')
         }
-//            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
+//
 
         if (text === '/game') {
             await bot.sendMessage(chatId, 'загадую цифру від 0 до 9')
