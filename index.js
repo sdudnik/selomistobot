@@ -9,7 +9,7 @@ const chats = {}
 const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
+await client.connect(err => {
     const collection = client.db("test").collection("devices");
     // perform actions on the collection object
     client.close();
@@ -30,7 +30,17 @@ const gameOptions = {
 }
 
 const start = () => {
-    bot.setMyCommands([
+
+    async function listDatabases(client) {
+        const databasesList = await client.db().admin().listDatabases();
+
+        console.log('Databases: ');
+        databasesList.databases.forEach(db => {
+            console.log(`- ${db.name}`);
+        })
+    }
+
+        bot.setMyCommands([
         {command: '/start', description: 'Початкове привітання!'},
         {command: '/info', description: 'Отримати інформацію про користувача'},
         {command: '/game', description: 'game'}
@@ -44,19 +54,10 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-
-            async function listDatabases(client) {
-                const databasesList = await client.db().admin().listDatabases();
-                return bot.sendMessage(chatID, 'Databases: ' +
-                    databasesList.databases.forEach(db => {
-                        `- ${db.name}`
-                    })
-                    )
-            }
-
-
-//            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
+                return bot.sendMessage(chatID, 'Databases: ')
         }
+//            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
+
         if (text === '/game') {
             await bot.sendMessage(chatId, 'загадую цифру від 0 до 9')
             const randomNumber = Math.floor(Math.random() *10)
