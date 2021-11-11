@@ -14,6 +14,8 @@ client.connect(err => {
     // perform actions on the collection object
     client.close();
 });
+await listDatabases(client);
+
 // end of connect to mongodb database
 
 const gameOptions = {
@@ -44,7 +46,7 @@ const start = () => {
         if (text === '/info'){
 
             async function listDatabases(client) {
-                const databasesList = await client.db().admin().listDatabases()
+                const databasesList = await client.db().admin().listDatabases();
                 return bot.sendMessage(chatID, 'Databases: ' +
                     databasesList.databases.forEach(db => {
                         `- ${db.name}`
