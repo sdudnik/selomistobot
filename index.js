@@ -42,7 +42,18 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
+
+            async function listDatabases(client) {
+                const databasesList = await client.db().admin().listDatabases()
+                return bot.sendMessage(chatID, 'Databases: ' +
+                    databasesList.databases.forEach(db => {
+                        `- ${db.name}`
+                    })
+                    )
+            }
+
+
+//            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
         }
         if (text === '/game') {
             await bot.sendMessage(chatId, 'загадую цифру від 0 до 9')
