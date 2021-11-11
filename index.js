@@ -5,6 +5,16 @@ const token = '1365948294:AAFwA5x1oOUaRBB8OgJi07cI02bICraIx9I'
 const bot = new TelegramApi(token, {polling: true})
 
 const chats = {}
+// start of connect to mongodb databasa
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://dbUser:<password>@cluster0.f5ibd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
+// end of connect to mongodb databasa
 
 const gameOptions = {
     reply_markup: JSON.stringify({
@@ -32,7 +42,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати: ' + msg.from.first_name)
         }
         if (text === '/game') {
             await bot.sendMessage(chatId, 'загадую цифру від 0 до 9')
