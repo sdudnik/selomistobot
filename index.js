@@ -11,10 +11,11 @@ const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/Ve
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 await client.connect(err => {
     const collection = client.db("test").collection("devices");
+
     // perform actions on the collection object
     client.close();
 });
-await listDatabases(client);
+// await listDatabases(client);
 
 // end of connect to mongodb database
 
@@ -31,14 +32,14 @@ const gameOptions = {
 
 const start = () => {
 
-    async function listDatabases(client) {
-        const databasesList = await client.db().admin().listDatabases();
-
-        console.log('Databases: ');
-        databasesList.databases.forEach(db => {
-            console.log(`- ${db.name}`);
-        })
-    }
+    // async function listDatabases(client) {
+    //     const databasesList = await client.db().admin().listDatabases();
+    //
+    //     console.log('Databases: ');
+    //     databasesList.databases.forEach(db => {
+    //         console.log(`- ${db.name}`);
+    //     })
+    // }
 
         bot.setMyCommands([
         {command: '/start', description: 'Початкове привітання!'},
