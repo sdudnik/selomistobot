@@ -5,7 +5,7 @@ const token = '1365948294:AAFwA5x1oOUaRBB8OgJi07cI02bICraIx9I'
 const bot = new TelegramApi(token, {polling: true})
 
 const chats = {}
-// start of connect to mongodb databasa
+// start of connect to mongodb database
 const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -14,12 +14,12 @@ client.connect(err => {
     // perform actions on the collection object
     client.close();
 });
-// end of connect to mongodb databasa
+// end of connect to mongodb database
 
 const gameOptions = {
     reply_markup: JSON.stringify({
         inline_keyboard: [
-            [{text: '11', callback_data: '1'}, {text: '2', callback_data: '2'}, {text: '3', callback_data: '3'}],
+            [{text: '1', callback_data: '1'}, {text: '2', callback_data: '2'}, {text: '3', callback_data: '3'}],
             [{text: '4', callback_data: '4'}, {text: '5', callback_data: '5'}, {text: '6', callback_data: '6'}],
             [{text: '7', callback_data: '7'}, {text: '8', callback_data: '8'}, {text: '9', callback_data: '9'}],
             [{text: '0', callback_data: '0'}],
@@ -42,7 +42,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати: ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати- ' + msg.from.first_name)
         }
         if (text === '/game') {
             await bot.sendMessage(chatId, 'загадую цифру від 0 до 9')
