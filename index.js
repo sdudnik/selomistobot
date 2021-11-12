@@ -13,8 +13,10 @@ client.connect(err => {
     const collection = client.db("VegFruDai").collection("Peoples");
 
 // ===========
-    const findResult = collection.find({}).toArray();
+    (async () => {
+    const findResult = await collection.find({}).toArray();
     console.log('Found documents =>', findResult);
+    })();
 
     // perform actions on the collection object
     client.close();
