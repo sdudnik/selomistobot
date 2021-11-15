@@ -8,59 +8,26 @@ const chats = {}
 // start of connect to mongodb database
 const { MongoClient } = require('mongodb');
 
+async function main() {
+    const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-    const collection = client.db("VegFruDai").collection("Peoples");
-    console.log("Connected successfully to server2");
+    try {
+        await client.connect(err => {
+            const collection = client.db("VegFruDai").collection("Peoples");
+        })
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
 
-    client.close();
-});
+//    console.log("Connected successfully to server2");
 
-    // $gt means "greater than"
-//    const query = { Parent: { $eq : 0 } };
-//    const cursor = collection.find(query);
-//    await cursor.forEach(console.dir);
+//    client.close();
+}
 
-
-    //const cursor = db.collection("foo").find({});
-//    async function() {
-//
-//    }
-//    while(await collection.hasNext()) {
-//        const doc = await collection.next();
-        // process doc here
-//    }
-
-
-
-//    const collection = db.collection('things')
-//     const cursor = collection.find({
-//         bla: 42 // find all things where bla is 42
-//     });
-//     let document;
-//     while ((document = await cursor.next())) {
-//         await collection.findOneAndUpdate({
-//             _id: document._id
-//         }, {
-//             $set: {
-//                 blu: 43
-//             }
-//         });
-//     }
-
-
-
-// ===========
-//    (async () => {
-//    const findResult = await collection.find({}).toArray();
-//    console.log('Found documents =>', findResult);
-//    })();
-
-    // perform actions on the collection object
-
-// await listDatabases(client);
+main().catch(console.error);
 
 // end of connect to mongodb database
 
