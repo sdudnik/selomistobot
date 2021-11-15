@@ -18,7 +18,13 @@ async function main() {
         // await client.connect(err => {
         //     const collection = client.db("VegFruDai").collection("Peoples");
         // })
-        await listDatabases(client);
+            // await listDatabases(client);
+        await createListing(client, {
+            name: "Lovely Loft",
+            summary: "A charming loft in Paris",
+            bedrooms: 1,
+            bathrooms: 1
+        })
     } catch (e) {
         console.error(e);
     } finally {
@@ -31,6 +37,13 @@ async function main() {
 }
 
 main().catch(console.error);
+
+async function createListing (client, newListing) {
+    const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
+
+    console.log(`New listing create with the following id: ${result.insertedId}`);
+}
+
 async function listDatabases(client){
     const databasesList = await client.db().admin().listDatabases();
     console.log("Databases:");
@@ -76,7 +89,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати** ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати*** ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
