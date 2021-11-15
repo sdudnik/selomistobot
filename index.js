@@ -7,12 +7,16 @@ const bot = new TelegramApi(token, {polling: true})
 const chats = {}
 // start of connect to mongodb database
 const { MongoClient } = require('mongodb');
+
+
 const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const collection = client.db("VegFruDai").collection("Peoples");
     console.log("Connected successfully to server2");
 
+    client.close();
+});
 
     // $gt means "greater than"
 //    const query = { Parent: { $eq : 0 } };
@@ -49,14 +53,13 @@ client.connect(err => {
 
 
 // ===========
-    (async () => {
-    const findResult = await collection.find({}).toArray();
-    console.log('Found documents =>', findResult);
-    })();
+//    (async () => {
+//    const findResult = await collection.find({}).toArray();
+//    console.log('Found documents =>', findResult);
+//    })();
 
     // perform actions on the collection object
-    client.close();
-});
+
 // await listDatabases(client);
 
 // end of connect to mongodb database
@@ -97,7 +100,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати/ ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+ ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
