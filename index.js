@@ -29,7 +29,7 @@ main().catch(console.error);
 
 async function findOneListByName (client, nameOfListing){
 const result = await client.db("VegFruDai").collection("Products")
-    .findOne({name: nameOfListing});
+    .findOne({Name: nameOfListing});
 if (result) {
     console.log(`Found a listing in the collection with the name '$
     {nameOfListing}'`);
@@ -91,7 +91,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+ ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+2 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
