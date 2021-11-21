@@ -31,8 +31,7 @@ async function findOneListByName (client, nameOfListing){
 const result = await client.db("VegFruDai").collection("Products")
     .findOne({Name: nameOfListing});
 if (result) {
-    console.log(`Found a listing in the collection with the name '$
-    {nameOfListing}'`);
+    console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
     console.log(result);
 } else {
     console.log(`No listing found with the name '${nameOfListing}'`);
@@ -68,15 +67,6 @@ const gameOptions = {
 
 const start = () => {
 
-    // async function listDatabases(client) {
-    //     const databasesList = await client.db().admin().listDatabases();
-    //
-    //     console.log('Databases: ');
-    //     databasesList.databases.forEach(db => {
-    //         console.log(`- ${db.name}`);
-    //     })
-    // }
-
         bot.setMyCommands([
         {command: '/start', description: 'Початкове привітання!'},
         {command: '/info', description: 'Отримати інформацію про користувача'},
@@ -91,7 +81,10 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+2 ' + msg.from.first_name)
+
+
+
+            return bot.sendMessage(chatId,'Тебе звати+3 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
