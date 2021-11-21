@@ -15,34 +15,36 @@ async function main() {
 
     try {
         await client.connect();
-        // await client.connect(err => {
-        //     const collection = client.db("VegFruDai").collection("Peoples");
-        // })
-            // await listDatabases(client);
-        await createListing(client, {
-            name: "Lovely Loft",
-            summary: "A charming loft in Paris",
-            bedrooms: 1,
-            bathrooms: 1
-        })
+        await findOneListByName(client, "Картопля")
+
     } catch (e) {
         console.error(e);
     } finally {
         await client.close();
     }
 
-//    console.log("Connected successfully to server2");
-
-//    client.close();
 }
 
 main().catch(console.error);
 
-async function createListing (client, newListing) {
-    const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
-
-    console.log(`New listing create with the following id: ${result.insertedId}`);
+async function findOneListByName (client, nameOfListing){
+const result = await client.db("VegFruDai").collection("Products")
+    .findOne({name: nameOfListing});
+if (result) {
+    console.log(`Found a listing in the collection with the name '$
+    {nameOfListing}'`);
+    console.log(result);
+} else {
+    console.log(`No listing found with the name '${nameOfListing}'`);
 }
+}
+
+// async function createListing (client, newListing) {
+//     const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
+// const offers = await client.db.Products.findOne()
+//
+//     console.log(`New listing create with the following id: ${result.insertedId}`);
+// }
 
 async function listDatabases(client){
     const databasesList = await client.db().admin().listDatabases();
@@ -89,7 +91,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати*** ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+ ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
