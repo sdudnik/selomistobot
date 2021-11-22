@@ -47,7 +47,7 @@ const start = () => {
                 try {
                     await client.connect();
                     await findOneListByName(client, "Картопля")
-                    return bot.sendMessage(chatId, 'Hello from mongo' + chatId + msg.db.result)
+                    return bot.sendMessage(chatId, 'Hello from mongo' + chatId + msg.from.result)
 
                 } catch (e) {
                     console.error(e);
@@ -78,7 +78,7 @@ const start = () => {
             }
 // end of connect to mongodb database
 
-            return bot.sendMessage(chatId,'Тебе звати+8 ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+7 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
