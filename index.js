@@ -43,8 +43,10 @@ const start = () => {
 
     main().catch(console.error);
 
+    let result;
+
     async function findOneListByName (client, nameOfListing){
-        const result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
+         result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
             .findOne({Name: nameOfListing});
         if (result) {
             console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
@@ -78,7 +80,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+10 ' + msg.from.first_name + msg.result)
+            return bot.sendMessage(chatId,'Тебе звати+11 ' + msg.from.first_name + msg.result)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
