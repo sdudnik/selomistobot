@@ -63,7 +63,7 @@ const start = () => {
                 if (result) {
                     console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
                     console.log(result);
-                    return bot.sendMessage(chatId, result)
+                    return bot.sendMessage(chatId, 'Hello from mongo' + msg.result)
                 } else {
                     console.log(`No listing found with the name '${nameOfListing}'`);
                 }
@@ -78,7 +78,7 @@ const start = () => {
             }
 // end of connect to mongodb database
 
-            return bot.sendMessage(chatId,'Тебе звати+3 ' + msg.from.first_name )
+            return bot.sendMessage(chatId,'Тебе звати+4 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
