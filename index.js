@@ -78,7 +78,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+9 ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+10 ' + msg.from.first_name + msg.result)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
