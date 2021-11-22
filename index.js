@@ -21,7 +21,50 @@ const gameOptions = {
 
 const start = () => {
 
-        bot.setMyCommands([
+    // start of connect to mongodb database
+    const { MongoClient } = require('mongodb');
+
+    async function main() {
+        const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
+        // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        const client = new MongoClient(uri);
+
+        try {
+            await client.connect();
+            await findOneListByName(client, "Картопля")
+//            return bot.sendMessage(chatId, 'Hello from mongo' + chatId + msg.from.result) // result !!!!
+
+        } catch (e) {
+            console.error(e);
+        } finally {
+            await client.close();
+        }
+    }
+
+    main().catch(console.error);
+
+    async function findOneListByName (client, nameOfListing){
+        const result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
+            .findOne({Name: nameOfListing});
+        if (result) {
+            console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
+            console.log(result);
+        } else {
+            console.log(`No listing found with the name '${nameOfListing}'`);
+        }
+    }
+
+    async function listDatabases(client){
+        const databasesList = await client.db().admin().listDatabases();
+        console.log("Databases:");
+        databasesList.databases.forEach(db => {
+            console.log(`- ${db.name}`);
+        })
+    }
+// end of connect to mongodb database
+
+
+    bot.setMyCommands([
         {command: '/start', description: 'Початкове привітання!'},
         {command: '/info', description: 'Отримати інформацію про користувача'},
         {command: '/game', description: 'game'}
@@ -35,50 +78,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-
-// start of connect to mongodb database
-            const { MongoClient } = require('mongodb');
-
-            async function main() {
-                const uri = "mongodb+srv://dbUser:J59MHPcQqVy9dM89@cluster0.f5ibd.mongodb.net/VegFruDai?retryWrites=true&w=majority";
-                // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-                const client = new MongoClient(uri);
-
-                try {
-                    await client.connect();
-                    await findOneListByName(client, "Картопля")
-                    return bot.sendMessage(chatId, 'Hello from mongo' + chatId + msg.from.result)
-
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    await client.close();
-                }
-            }
-
-            main().catch(console.error);
-
-            async function findOneListByName (client, nameOfListing){
-                const result = await client.db("VegFruDai").collection("Products")
-                    .findOne({Name: nameOfListing});
-                if (result) {
-                    console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
-                    console.log(result);
-                } else {
-                    console.log(`No listing found with the name '${nameOfListing}'`);
-                }
-            }
-
-            async function listDatabases(client){
-                const databasesList = await client.db().admin().listDatabases();
-                console.log("Databases:");
-                databasesList.databases.forEach(db => {
-                    console.log(`- ${db.name}`);
-                })
-            }
-// end of connect to mongodb database
-
-            return bot.sendMessage(chatId,'Тебе звати+7 ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+9 ' + msg.form.result + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
