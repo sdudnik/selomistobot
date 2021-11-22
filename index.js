@@ -47,6 +47,7 @@ const start = () => {
                 try {
                     await client.connect();
                     await findOneListByName(client, "Картопля")
+                    return bot.sendMessage(chatId, 'Hello from mongo' + msg.from.result)
 
                 } catch (e) {
                     console.error(e);
@@ -63,7 +64,6 @@ const start = () => {
                 if (result) {
                     console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
                     console.log(result);
-                    return bot.sendMessage(chatId, 'Hello from mongo' + msg.from.result)
                 } else {
                     console.log(`No listing found with the name '${nameOfListing}'`);
                 }
@@ -78,7 +78,7 @@ const start = () => {
             }
 // end of connect to mongodb database
 
-            return bot.sendMessage(chatId,'Тебе звати+5 ' + msg.from.first_name)
+            return bot.sendMessage(chatId,'Тебе звати+6 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
