@@ -43,14 +43,13 @@ const start = () => {
 
     main().catch(console.error);
 
-    let result;
-
     async function findOneListByName (client, nameOfListing){
-         result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
+        const result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
             .findOne({Name: nameOfListing});
         if (result) {
-            console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
+//            console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
             console.log(result);
+//            return result;
         } else {
             console.log(`No listing found with the name '${nameOfListing}'`);
         }
@@ -75,12 +74,13 @@ const start = () => {
     bot.on('message', async msg => {
         const text = msg.text;
         const chatId = msg.chat.id;
+
         if (text === '/start'){
             await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/763/a77/763a770d-0962-37fc-baec-121bafeca64d/9.webp')
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+11 ' + msg.from.first_name + msg.result)
+            return bot.sendMessage(chatId,'Тебе звати+12 ' + msg.from.first_name)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
