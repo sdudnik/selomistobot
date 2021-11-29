@@ -5,7 +5,7 @@ const token = '1365948294:AAFwA5x1oOUaRBB8OgJi07cI02bICraIx9I'
 const bot = new TelegramApi(token, {polling: true})
 
 const chats = {}
-let result
+let resultDb
 ////
 
 const gameOptions = {
@@ -42,13 +42,14 @@ const start = () => {
     }
 
     main().catch(console.error);
-
+// let result
     async function findOneListByName (client, nameOfListing){
-        result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
+        let result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
             .findOne({Name: nameOfListing});
         if (result) {
 //            console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
             console.log(result);
+            resultDb = result;
 //            return result;
         } else {
             console.log(`No listing found with the name '${nameOfListing}'`);
@@ -80,7 +81,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+13 ' + msg.result)
+            return bot.sendMessage(chatId,'Тебе звати+14 ' + resultDb)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
