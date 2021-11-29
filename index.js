@@ -5,7 +5,7 @@ const token = '1365948294:AAFwA5x1oOUaRBB8OgJi07cI02bICraIx9I'
 const bot = new TelegramApi(token, {polling: true})
 
 const chats = {}
-
+let result
 ////
 
 const gameOptions = {
@@ -42,7 +42,7 @@ const start = () => {
     }
 
     main().catch(console.error);
-let result
+
     async function findOneListByName (client, nameOfListing){
         result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
             .findOne({Name: nameOfListing});
