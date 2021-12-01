@@ -31,7 +31,7 @@ const start = () => {
 
         try {
             await client.connect();
-            await findOneListByName(client, "Картопля")
+            resultDb = await findOneListByName(client, "Картопля")
 //            return bot.sendMessage(chatId, 'Hello from mongo' + chatId + msg.from.result) // result !!!!
 
         } catch (e) {
@@ -44,13 +44,12 @@ const start = () => {
     main().catch(console.error);
 // let result
     async function findOneListByName (client, nameOfListing){
-        let result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
+        var result = await client.db("VegFruDai").collection("Products")  // result !!!!!!
             .findOne({Name: nameOfListing});
         if (result) {
 //            console.log(`Found a listing in the collection with the name '${nameOfListing}'`);
             console.log(result);
-            resultDb = result;
-//            return result;
+            return result;
         } else {
             console.log(`No listing found with the name '${nameOfListing}'`);
         }
@@ -81,7 +80,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати+14 ' + resultDb)
+            return bot.sendMessage(chatId,'Тебе звати ))' + resultDb)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
