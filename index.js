@@ -80,7 +80,7 @@ const start = () => {
             return bot.sendMessage(chatId,'Вітаємо')
         }
         if (text === '/info'){
-            return bot.sendMessage(chatId,'Тебе звати ))' + resultDb)
+            return bot.sendMessage(chatId,'Тебе звати ))2' + msg.from.resultDb)
             //    return bot.sendMessage(chatId, 'Databases: ')
         }
 //
